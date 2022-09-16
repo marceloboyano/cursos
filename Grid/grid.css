@@ -1,0 +1,403 @@
+html {
+    box-sizing: border-box;
+    font-size: 16px;
+    font-family: sans-serif;
+    scroll-behavior: smooth;
+  }
+
+  *,
+  *::after,
+  *::before {
+    box-sizing: inherit;
+  }
+
+  a[href="#top"] {
+    margin: 1rem;
+    display: block;
+    font-size: 2rem;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  h2 {
+    margin-top: 50vh;
+    text-align: center;
+  }
+
+  img {
+    margin: auto;
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .menu {
+    margin-bottom: 100vh;
+    font-size: 125%;
+  }
+
+  .menu li {
+    margin-bottom: 1rem;
+  }
+
+  .container {
+    margin: 0 auto;
+    width: 80%;
+    height: 80vh;
+    background-color: #222;
+    border: medium solid #000;
+  }
+
+  .item {
+    padding: 1rem;
+    font-size: 1.25rem;
+    background-color: #666;
+    border: medium solid #999;
+}
+.sub-item{
+    padding: 1rem;
+    background-color: #ddd;
+    border: medium solid #ccc;
+  }
+
+
+  .grid-explicit{
+    display: grid;
+    /* Grid de 3col x 3row */
+    grid-template-rows: 2rem 20vh 30%;
+    grid-template-columns: 50% 100px 1fr;
+    /* Grid de 5col x 4row */
+    grid-template-columns: repeat(5, 20%);
+    grid-template-rows: repeat(4,25%);
+    grid-template-rows: repeat(4,auto);
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(4,1fr);
+    /* Grid de 4col x 5row */
+    grid-template-columns: 20% 30% 30% 20%;
+    /* esto es lo mismo que arriba */
+    grid-template-columns: 20% repeat(2, 30%) 20%;
+    grid-template-rows: repeat(5,auto);
+    /* espaciados entre filas o columnas ya es obseleta la propiedad */
+    /* grid-column-gap:2rem;
+    grid-row-gap: 1rem;
+    grid-gap: 100px 0px; */
+    /* se pasaron a llamar gap */
+    column-gap: 4rem;
+    row-gap: 2rem;
+    /* gap: row column */
+    gap:1vh 1vw;
+    gap:0;
+}
+
+/* posicionando celdas en la grid */
+.grid-explicit .item:nth-child(10){
+    color: cyan;
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 2;
+    grid-column-end: 3;
+    /* shorthand de las propiedades anteriores */
+    grid-row: 2 / 3;
+    grid-column: 3 / 5;
+    /* atajo para rows y column 
+        grid-area:grid-row-start / grid-row-end / grid-column-start / grid-column-end */
+    grid-area:2/3/3/5;
+
+}
+
+.grid-explicit .item:nth-child(12){
+    color: cyan;  
+    /* abarca desde donde esta 2 o X filas o columnas */
+    grid-row:span 2;
+    grid-column:span 3;
+
+}
+
+.grid-explicit .item:nth-child(15){
+    color: cyan;  
+    /* aca le digo que comience en fila 1 y columna 1 y abarque 2 mas */
+    grid-row:1/span 2;
+    grid-column: 1/span 2;
+}
+
+/* no es tan usada esta tecnica de darles nombres a las celdas, es complicarse la existencia */
+.grid-line-names{
+    display: grid;
+    /* Grid de 3col x 3row */
+    grid-template-columns:repeat(3,1fr) ;
+    grid-template-rows:repeat(3, 1fr);
+    grid-template-columns:[linea-c1]1fr [linea-c2]1fr [linea-c3]1fr [linea-c4];
+    grid-template-rows:[linea-r1]auto [linea-r2]auto [linea-r3]auto [linea-r4];
+}
+
+.grid-line-names .item:nth-child(3){
+    color:cyan;
+    grid-row: linea-r3 / linea-r4;
+    grid-column: linea-c1 / linea-c4;
+}
+
+.grid-areas{
+    display: grid;
+     /* Grid de 2col x 3row */
+    grid-template-columns: 1fr 200px;
+    grid-template-rows: 100px repeat(2,1fr) 60px;
+    /* esto hace el maquetado de las grid si ponemos . queda vacia la celda */
+    grid-template-areas: 
+    "header header"
+    "content sidebar"
+    "content  ."
+    "footer  footer";
+}
+
+.header{
+    grid-area: header;
+}
+.content{
+    grid-area: content;
+}
+.sidebar{
+    grid-area: sidebar;
+}
+.footer{
+    grid-area: footer;
+}
+
+/* las filas que sobran a nuestra grid de 4x3 las ordena de forma automatica dandole espacio
+dependiendo de su contenido eso es grid implicit */
+.grid-implicit{
+    /* Grid de 4col x 3row */ 
+    /* inline-grid el grid se aplica en linea pudiendo poner varias grid al lado dependiendo de su tamaño */
+    display: inline-grid;
+    display: grid;
+    grid-template-columns: repeat(4,1fr);
+    grid-template-rows: repeat(3,200px);
+
+}
+
+.grid-flow{
+    display: grid;
+     /* Grid de 5col x 3row */ 
+     grid-template-columns: repeat(5,1fr);
+     grid-template-rows: repeat(3,150px);
+     /* grid-auto-flow con esto le damos la direccion como en flexbox fila o columna */
+     grid-auto-flow: row;
+     /* grid-auto-rows:le dice el valor que deben toman las filas implicitas que sobran */
+     grid-auto-rows: auto;
+     grid-auto-rows: 100px;
+     grid-auto-flow: column;
+     /* grid-auto-column: hace lo mismo pero para las columnas que sobran */
+     grid-auto-columns: 50px;
+}
+
+.grid-flow-dense{
+    display: grid;
+   /* Grid de 5col x 4row */ 
+   grid-template-columns: repeat(5,1fr);
+   grid-template-rows: repeat(4,200px);
+   /* con row dense acomoda los elementos en las celdas que quedan vacias por la grid 9 es demasiado grande y no puede caber*/
+   grid-auto-flow: row dense;
+   /* grid-auto-flow: column dense; */
+}
+
+.grid-flow-dense .item:nth-child(9){
+    color: cyan;
+    grid-row:span 3;
+    grid-column: span 3;
+}
+
+/* .grid-flow-dense .item:nth-child(11){
+    color: cyan;
+    grid-row:span 3;
+    grid-column: span 3;
+} */
+
+.grid-layers{
+    display: grid;
+       /* Grid de 4col x 4row */ 
+       grid-template-columns: repeat(4,1fr);
+       grid-template-rows: repeat(4,1fr);
+}
+.grid-layers .item:nth-child(1){
+    background-color: #Dbea33;
+    grid-column: 1/3;
+    grid-row: 1/3;
+}
+
+.grid-layers .item:nth-child(2){
+    background-color: #497AF8;
+    grid-column: 3/5;
+    grid-row: 1/3;
+}
+
+.grid-layers .item:nth-child(3){
+    background-color: #90E971;
+    grid-column: 1/3;
+    grid-row: 3/5;
+}
+
+.grid-layers .item:nth-child(4){
+    background-color: #F0952A;
+    grid-column: 3/5;
+    grid-row: 3/5;
+}
+/* SUPERPOSICION de elementos se planea el esquema con un excel o figma
+    desde donde a donde va a ocupar  */
+.grid-layers .item:nth-child(5){
+    background-color: #C92AF0;
+    opacity: .75;
+    grid-column: 2/4;
+    grid-row: 2/4;
+}
+/* le da un orden a los elementos - OJO solo funciona cuando se da el recorrido natural de las celdas
+esto significa que si le aplicaste GRID AREAS O el esquema de superposicion esto no funcionará*/
+.grid-order{
+    display: grid;
+    /* Grid de 3col x 2row */
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(2,1fr);
+
+}
+
+.grid-order .item:nth-child(1){
+    /* order: el valor por defeaul es 0 le da un orden como en flexbox
+        acepta valores positivos y negativos  */
+    order: 1;
+}
+
+.grid-order .item:nth-child(2){
+    /* order: el valor por defeaul es 0 le da un orden como en flexbox
+       acepta valores positivos y negativos */
+    order: 2;
+}
+.grid-order .item:nth-child(5){
+    /* order: el valor por defeaul es 0 le da un orden como en flexbox
+       acepta valores positivos y negativos */
+    order: -1;
+}
+
+.grid-align{
+    display: grid;
+    /* Grid de 3col x 2row */
+    grid-template-columns: repeat(3,200px);
+    grid-template-rows: repeat(2,200px);
+    /* justify-items: alinea a los elementos grid en el eje horizontal X */
+    justify-items: stretch;
+    justify-items: center;
+    justify-items: start;
+    justify-items: end;
+    /* align-items: alinea a los elementos grid en el eje vertical Y */
+    align-items: stretch;
+    align-items: start;
+    align-items: end;
+    align-items: center;
+}
+
+.grid-align .item:nth-child(4){
+    /* alinea solo a un elemento en este caso el 4 */
+    justify-self: start;
+    align-self: start;
+}
+/* track es toda la columna o toda la fila  */
+.grid-align-tracks{
+    display: grid;
+    /* Grid de 3col x 2row */
+    grid-template-columns: repeat(3,200px);
+    grid-template-rows: repeat(2,200px);
+    /* justify-content alinea los tracks de la grid en el eje horizontal X.
+    alinea las celdas con respecto al grid y el justify items alineaba el texto dentro de cada celda */
+    justify-content: start;
+    justify-content: end;
+    justify-content: center;
+    justify-content: space-between;
+    justify-content: space-around;
+    justify-content: space-evenly;
+    /* align-content alinea los tracks de la grid en el eje Vertical Y.*/
+    align-content: start;
+    align-content: end;
+    align-content: center;
+    align-content: space-between;
+    align-content: space-around;
+    align-content: space-evenly;
+
+}
+
+/* esta tecnica de min max es muy util por ejemplo para esas fotos del perfil de instagram donde se agrega
+dinamicamente fotos que hacen que las filas crezcan sin poder calcular su tamaño */
+.grid-min-max{
+    display: grid;
+    /* Grid de 4col x  ?row  calcula las filas al azar segun las funciones min max*/
+    grid-template-columns: repeat(4,1fr);
+    grid-template-columns: repeat(4,minmax(100px, 200px));
+    /* min content seria el minimo contenido que tiene la celda en este caso seria el texto (grid item)  */
+    grid-template-columns: repeat(4,minmax(min-content,200px));
+    grid-template-columns: repeat(4,minmax(100px, min-content));
+    grid-template-columns: repeat(4,minmax(100px, max-content));
+    grid-template-columns: repeat(4,minmax(max-content, 200px));
+    grid-template-columns: repeat(4,minmax(min-content, max-content));
+}
+
+.grid-repeat{
+    display: grid;
+    /* Grid de 4col x ?row*/
+    /* aplica patrones donde dice cuantas veces se van a repetir los mismos */
+    grid-template-columns: repeat(4,10% 20% 30% 40%);
+    grid-template-columns: repeat(3,10% 20% 30% 40%);
+    grid-template-columns: repeat(2,10% 20% 30% 40%);
+    grid-template-columns: repeat(1,10% 20% 30% 40%);
+    grid-template-rows: repeat(2, 10vh 20vh);
+    grid-template-rows: repeat(2, 100px 200px);
+    grid-auto-rows: 150px;
+    
+    
+}
+
+.grid-dynamics{
+    display: grid;
+    /* Grid col4 dinamico genera dinamicamente las filas */
+   grid-template-columns: repeat(4,100px);
+   /* auto-fill Rellena con tracks generados dinamicamente */
+   grid-template-columns: repeat(auto-fill,100px);
+   /* auto-fit Ajusta la grid con los tracks existentes */
+   grid-template-columns: repeat(auto-fit,100px);
+   grid-template-columns: repeat(auto-fill,minmax(100px,1fr));
+   grid-template-columns: repeat(auto-fit,minmax(100px,1fr));
+}
+
+.grid-responsive{
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px,1fr));
+    /* gap:1vw; */
+    
+}
+
+.grid-nested{
+    display: grid;
+    /* Grid de 3col x ?row*/
+    grid-template-columns: repeat(3,1fr);
+}
+
+/* Los subgrids estan soportados en FIREFOX pero no en Chrome hasta el momento */
+.grid{
+    display: grid;
+      /* Grid de 3col x 4row*/
+    grid-template-columns: repeat(3,1fr);
+    grid-template-rows: repeat(4,1fr);
+    
+}
+.subgrid{
+    /* Para que la característica de subgrid funcione es necesario hacer lo siguiente
+    1) Definir explícitamente el tamaño que ocupará el elemento que aplicará subgrid dentro del contenedor padre 
+    grid, es decir definir sus propiedades grid-column y grid-row. 
+    2) Aplicar display grid al elemento que aplicará subgrid.
+    3) Aplicar el valor de subgrid a las columnas, a las filas o ambas depende de cómo se requiera.*/
+    grid-column: span 3;
+    grid-row: 1/3;
+    display: grid;
+    grid-template-columns: subgrid;
+    grid-template-rows: subgrid;
+
+}

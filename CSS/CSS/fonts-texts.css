@@ -1,0 +1,140 @@
+/* 
+Estilos de la Fuente
+font-family
+font-size
+font-weight - es el peso de la letra con palabras o 100-900 
+font-style
+font-variant - variante de la fuente small-caps convierte a mayusculas
+line-height - interlineado
+font - la short hands te permite definir varias opciones a la vez- poner una diagonal o 
+barra entre font-size y line-height
+                */
+
+
+ .font{
+    font-family: Georgia, 'Times New Roman', Times, serif;
+    font-family: sans-serif;
+    font-size: 32px;
+    font-weight: bold;
+    font-style: italic;
+    font-variant: small-caps;
+    line-height: 2;
+    font: italic small-caps bold 24px / 1.5 monospace;
+ }
+
+
+ /* Formato woff o woff2 - Web Open Font Format
+ fuentes importadas pueden ser varias a la vez
+ o una importada y otra ya definida por las dudas que no la encuentre
+
+ font-display:
+ auto - permite que el navegador utilice el método predeterminado que suele ser block
+ black - oculta brevemente el texto hasta que la fuente haya sido descargada por completo
+ swap - es el ideal que nos recomienda chrome, indica al navegador que utilice la fuente alternativa para mostrar el texto
+        hasta que la fuente personalizada se haya cargado por completo
+fallback - es una mezcla de auto y swap
+optional - ocultará el texto, luego lo cargará con la fuente alternativa y finalmente 
+        aplicará la fuente personalizada 
+ */
+                                            
+@font-face{
+    font-family:"Branda";
+    /* src:url("../assets/chalet.TTF")format("TTF"),
+    url("../assets/chalet.TTF")format("TTF"); */
+    font-display: swap;
+    src: url("../assets/Branda-yolq.ttf")format("woff");
+}
+
+.branda{
+    font-family: "Branda", sans-serif;
+    font-size: 2rem;
+}
+
+@font-face{
+    font-family:"Pecita";
+    /* src:url("../assets/chalet.TTF")format("TTF"),
+    url("../assets/chalet.TTF")format("TTF"); */
+    src: url("../assets/Pecita.otf")format("woff");
+    font-display: swap;
+}
+
+.pecita{
+    font-family:"Pecita", cursive;
+    font-size: 2rem;
+}
+
+.releway{
+    font-family: 'Raleway', sans-serif;
+    font-size: 2rem;
+}
+
+/* 
+text-align
+text-decoration
+text-indent - sangria
+text-overflow - para que funcione hay que tener
+  overflow:hidden y
+  white-space:nowrap; 
+text-transform: capitalize tranforma la primera letra a mayusculas
+                lowercase o uppercase si quieres mayusculas o minusculas
+letter-spacing: espaciado de las letras
+white-space: nos dice que hacer con los espacios en blanco
+word-break  - romper palabras  cuando no alcanza la hoja
+word-spacing - espaciado por palabras
+writing-mode -
+
+ */
+
+ .text{
+     font-size: 2rem;
+     text-align: center;
+     text-align: left;
+     text-decoration: none;
+     text-indent: 3rem;
+     text-transform: capitalize;
+     text-transform: lowercase;
+     letter-spacing: .5rem;
+     word-break: break-all;
+     writing-mode: vertical-lr;
+    }
+    
+.text a {
+    text-decoration:none;
+}
+    
+.text-overflow{
+        
+     font-size: 2rem;
+     text-overflow: ellipsis;
+     background-color: blanchedalmond;
+     border: thin solid black;
+     padding: 1rem;
+     width: 50%;
+     overflow:hidden;
+     white-space:nowrap; 
+}
+
+.white-space{
+    white-space: pre;
+}
+
+.word-spacing {
+    font-size: 2rem;
+    word-spacing: 1rem;
+}
+
+/* icons */
+
+.material-symbols-outlined {
+    font-family: 'Material Symbols Outlined';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;  /* Preferred icon size */
+    display: inline-block;
+    line-height: 1;
+    text-transform: none;
+    letter-spacing: normal;
+    word-wrap: normal;
+    white-space: nowrap;
+    direction: ltr;
+  }

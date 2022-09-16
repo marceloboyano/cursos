@@ -1,0 +1,13 @@
+/* primera version de media queries 2.1 llamando a una hoja de estilos media = print */
+
+@page{
+    size: A4;
+}
+
+body{
+    font-size: 12pt;
+    font-family: serif;
+    background-color: #000;
+    color: #fff;
+
+}
