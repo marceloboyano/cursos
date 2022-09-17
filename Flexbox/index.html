@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Aprendiendo Flexboxs</title>
+    <title>Ejemplos Prácticos Flexbox</title>
     <style>
         html{
             box-sizing: border-box;
@@ -13,139 +13,163 @@
         *::after,
         *::before{
             box-sizing: inherit;
+            margin: 0;
+            padding: 0;
         }
-        .container{
-            background-color: #333;
-            height: 400px;
-            width: 1000px;
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
 
-            /* Al conjunto de display flex-direction flex-wrap se llama flujo de la caja 
-           */
-           display: flex;
-           /* display: Define que una caja será flexbox de bloque o flexbox de línea*/
-           flex-direction: row;
-           /* Define el eje principal (main axis) row-x, column-y
-           los valores de flex-direction son row, row-reverse, column, column-reverse */
-           flex-wrap: nowrap;   
-           /* flex-wrap: Define si la caja flexbox envuelve o NO  a sus hijos
-           flex-wrap:nowrap - mantiene todos los items en una sola fila o columna dependiendo de la flex-direction
-            flex-wrap: wrap - envuelve, considera el tamaño que tengan los items y los mete en una sola fila o columna
-                               pero si no alcanza sigue abajo generando varias filas o columnas
-            flex-wrap: wrap-reverse - los pone en la otra punta si son files o abajo si son columnas*/
-            
-            flex-wrap: nowrap;
-            flex-flow: row nowrap;
-            /* flex-flow: Es un shorthand de flex-direction y flex-wrap */
-            justify-content: flex-start;
-            /* justify-content define la alineación de los hijos, respecto del eje principal (main axis)
-            flex-start - es el valor por defecto)y los alinea a la izquierda
-            center - los centra
-            flex-end - alinea a la derecha
-            space-between - ignora las orillas de la caja contenedoras y el espacio que sobre los vamos a repartir
-                            entre los elementos internos entre los elementos hijos
-            space-around - ya considera las orillas 
-            space-evenly - da el mismo espacio le da a las orillas que a los elementos internos*/
-            align-items: stretch;
-            /* align-items - Define la alineación de los hijos en el eje transversal(cross axis), dentro de cada línea(trabaja sobre cada una de las lineas) 
-            stretch - valor por defecto, los hijos de una caja flexbox en el eje transversal(eje que no es principal) 
-                        se van a estirar al tamaño del contenedor padre. Ojo para que surta efecto no hay que darle ancho o alto
-            flex-start - es el valor por defecto)y los alinea a la izquierda
-            center - los centra
-            flex-end - alinea a la derecha
-            baseline - se alinea el texto a un renglon, independientemente del tamaño que tenga el texto estaran en un misma linea o renglon*/
-            align-content: flex-start;
-            /* align-content hace lo mismo que justify-content pero este lo hace en el eje transversal y el otro en el principal. (trabaja en conjunto como un todo)
-            Define la alineación de los hijos en el eje transversal (cross axis), NO funciona cuando los hijos están en una sola línea es decir (cuando flex-wrap es nowrap - NO FUNCIONA).
-            valor por defecto es flex-start
-            flex-start | flex-end | center | space-between | space-around | space-evenly | */
-            
-            
         }
-        .item{
-            border: medium solid #999;
-             /* width: 20%;
-            height: 20%; */
-            width: 100px;
-            background-color: #666;
-            flex-grow: 0;
-            /*flex-grow: Cuando la caja flexbox tenga espacio sobrante, es la habilidad o el factor de crecer, valor por
-            defecto es 0, NO se aceptan valores negativos  */
-            flex-shrink: 1;
-            /* flex-shrink: Cuando la caja flexbox NO tenga espacio sobrante, es la habilidad o el facto de encogerse, 
-            valor por defecto es 1, NO se aceptan valores negativos */
-            flex-basis: auto;
-            flex-basis: 100px;
+        img{
+            max-width: 100%;
+            height: auto;
+        }
+        main{
+            flex-grow: 1;
+        }
+        .titulares{
+            padding: 1rem;
+            background-color: #222;
+            color:#EEe;
+        }
+        .header{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        .menu ul{
+            list-style-type: none;
+        }
+        .hero-image{
+            min-height: 100vh;
+            background-image:url("https://placeimg.com/1280/720/animals");
            
-            /* Es el tamaño del elemento hijo dentro de la línea de la caja flexbox 
-            Si la caja flexbox tiene dirección de fila, flex-basis representa el width
-            Si la caja flexbox tiene dirección de columna, flex-basis representa el height
-            Valor por defecto auto 
-            width o height, dependiendo si es flex-direction row o column, no surten efecto mientras se esta usando flex-basis, se aplicará el valor de este */
-            /* width: 200px; */
-            flex:0 1 150px;
-            /* Es un shorhand de los propiedades flex-gro flex-shrink y flex-basis, en ese orden */
+            background-repeat: no-repeat;
+            color:#fff;
 
-            order:0;
-            /* Representa el orden que tendrán los elementos hijos en la caja flexbox
-            valor por defecto 0
-            Se aceptan valores positivos y negativos
-            un valor menor siempre irá antes que un valor mayor */
-            align-self:stretch ;
-            /* stretch | flex-start | flex-end | center | baseline */
-            /* Sobreescribe el valor de la propiedad align-items sólo para el elemento hijo especificado */
-            
-            
         }
-        .item:nth-child(2){
-            /* flex-grow: 0; */
-            /* flex-shrink: 2; */
-            order:-1;
+        .hero-image div{
+            min-height: inherit;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: rgba(0, 0, 0, .75);
         }
-        .item:nth-child(3){
-            /* flex-grow: 0; */
-            align-self:center ;
+        .hero-image h1{
+            font-size:5vw;
         }
-        /* .item:nth-child(2),
-        .item:nth-child(17){
-            font-size: 250%;
-        } */
+        .flex-responsive{
+            display: flex;
+            flex-flow: row wrap;
+        }
+        .flex-responsive-item{
+            border:thin solid #F60;
+            flex:1 1 200px;
+
+        }
+        @media screen and (min-width: 1024px){
+            .header{
+                display:flex;
+                flex-direction: row;
+                justify-content: space-between;
+            }
+            .menu ul {
+                display: flex;
+            }
+            .menu li{
+                padding: .5rem;
+            }
+            .flex-container{
+                display: flex;    
+                align-items: center;            
+            }
+            .flex-item{
+                flex: 0 0 50%;
+            }
+
+            .flex-order-1{
+                order:1;
+            }
+            .flex-row-reverse{
+                flex-direction: row-reverse;
+            }
+        }
     </style>
 </head>
 <body>
-    <section class="container">
-        <article class="item">Flex Item 1</article>
-        <article class="item">Flex Item 2</article>
-        <article class="item">Flex Item 3</article>
-        <article class="item">Flex Item 4</article>
-        <article class="item">Flex Item 5</article>
-    </section>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br> <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-    <section class="container">
-        <article class="item">Flex Item 1</article>
-        <article class="item">Flex Item 2</article>
-        <article class="item">Flex Item 3</article>
-    </section>
-    <br><br>
-    <section class="container">
-        <article class="item">item 1</article>
-        <article class="item">item 2</article>
-        <article class="item">item 3</article>
-        <article class="item">item 4</article>
-        <article class="item">item 5</article>
-        <article class="item">item 6</article>
-        <article class="item">item 7</article>
-        <article class="item">item 8</article>
-        <article class="item">item 9</article>
-        <article class="item">item 10</article>
-        <article class="item">item 11</article>
-        <article class="item">item 12</article>
-        <article class="item">item 13</article>
-        <article class="item">item 14</article>
-        <article class="item">item 15</article>
-        <article class="item">item 16</article>
-        <article class="item">item 17</article>
-        <article class="item">item 18</article>
-        <article class="item">item 19</article>
-    </section>
+    <header class="titulares header">
+      <div class="logo">Logo</div>
+        <nav class="menu">
+            <ul>
+                <li><a href="#">Sección 1</a></li>
+                <li><a href="#">Sección 2</a></li>
+                <li><a href="#">Sección 3</a></li>
+                <li><a href="#">Sección 4</a></li>
+            </ul>
+        </nav>
+     
+    </header>
+     <main>
+        <article class="hero-image">    
+            <div>
+                <h1>Flexbox is fuckin' COOL!!!</h1>
+            </div>      
+        </article>
+        <section class="flex-container flex-row-reverse">
+            <article class="flex-item">
+                <h2>Título</h2>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga explicabo rem veniam similique ea sapiente tempora nemo soluta, perferendis veritatis debitis iure aut ipsa, repudiandae blanditiis praesentium facere nulla optio.
+                </p>
+            </article>
+            <article class="flex-item">
+                <img src="https://placeimg.com/400/400/people">
+            </article>
+
+        </section>       
+        <section class="flex-container">
+            <article class="flex-item">
+                <h2>Título</h2>
+                <p>
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga explicabo rem veniam similique ea sapiente tempora nemo soluta, perferendis veritatis debitis iure aut ipsa, repudiandae blanditiis praesentium facere nulla optio.
+                </p>
+            </article>
+            <article class="flex-item">
+                <img src="https://placeimg.com/400/400/arch">
+            </article>
+
+        </section>     
+        <h2>Responsive sin Media Queries con Flexbox</h2>
+        <section class="flex-responsive">
+            <article class="flex-responsive-item">Item Responsivo 1</article>
+            <article class="flex-responsive-item">Item Responsivo 2</article>
+            <article class="flex-responsive-item">Item Responsivo 3</article>
+            <article class="flex-responsive-item">Item Responsivo 4</article>
+            <article class="flex-responsive-item">Item Responsivo 5</article>
+            <article class="flex-responsive-item">Item Responsivo 6</article>
+            <article class="flex-responsive-item">Item Responsivo 7</article>
+            <article class="flex-responsive-item">Item Responsivo 8</article>
+            <article class="flex-responsive-item">Item Responsivo 9</article>
+            <article class="flex-responsive-item">Item Responsivo 10</article>
+            <article class="flex-responsive-item">Item Responsivo 11</article>
+            <article class="flex-responsive-item">Item Responsivo 12</article>
+            <article class="flex-responsive-item">Item Responsivo 13</article>
+            <article class="flex-responsive-item">Item Responsivo 14</article>
+            <article class="flex-responsive-item">Item Responsivo 15</article>
+            <article class="flex-responsive-item">Item Responsivo 16</article>
+            <article class="flex-responsive-item">Item Responsivo 17</article>
+            <article class="flex-responsive-item">Item Responsivo 18</article>
+            <article class="flex-responsive-item">Item Responsivo 19</article>
+        </section>
+    </main>
+    <footer class="titulares">
+         <h2>Sticky Footer</h2>
+    </footer>
+    
 </body>
 </html>
