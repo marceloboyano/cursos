@@ -6,7 +6,7 @@
 
 ## [FLEXBOX](https://marceloboyano.github.io/cursos/Flexbox/)
 
-## [FLEXBOX Y BOOTSTRAP](https://marceloboyano.github.io/cursos/Flexbox+Bootstrap/)
+## [FLEXBOX Y BOOTSTRAP](https://marceloboyano.github.io/cursos/FlexboxBootstrap/)
 
 ## [GRID](https://marceloboyano.github.io/cursos/Grid/)
 
